@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import VStack from "../../app/Layout/VStack";
 import HStack from "../../app/Layout/HStack";
-import add_Domanda from "../../app/api/firestore";
+import { add_Domanda } from "../../app/api/firestore";
 import Button from "../../app/Bricks/Button";
 import React, { useState } from "react";
 
@@ -14,37 +14,32 @@ const Home = () => {
   const [secondaR, setSecondar] = useState("");
   const [terzaR, setTerzar] = useState("");
   const [quartaR, setQuartar] = useState("");
-  const [obj, setObj] = useState({});
+  var obj = {};
 
   const clickFunc = () => {
-    setTimeout(
-      () =>
-        setObj({
-          "testo": testoD,
-          "risposte": [
-            {
-              "testo": primaR,
-              "corretta": true,
-            },
-            {
-              "testo": secondaR,
-              "corretta": false,
-            },
-            {
-              "testo": terzaR,
-              "corretta": false,
-            },
-            {
-              "testo": quartaR,
-              "corretta": false,
-            },
-          ],
-        }),
-      1500
-    );
+    obj = {
+      "testo": testoD,
+      "risposte": [
+        {
+          "testo": primaR,
+          "corretta": true,
+        },
+        {
+          "testo": secondaR,
+          "corretta": false,
+        },
+        {
+          "testo": terzaR,
+          "corretta": false,
+        },
+        {
+          "testo": quartaR,
+          "corretta": false,
+        },
+      ],
+    };
 
-    console.log(obj);
-    //add_Domanda(esame, argomento, obj);
+    add_Domanda(esame, argomento, obj);
   };
   return (
     <>

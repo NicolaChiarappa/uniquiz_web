@@ -7,7 +7,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-async function add_Domanda(esame, argomento, obj) {
+export async function add_Domanda(esame, argomento, obj) {
   var docRef = doc(db, "esami", esame, "argomenti", argomento);
 
   await updateDoc(docRef, {
@@ -15,4 +15,9 @@ async function add_Domanda(esame, argomento, obj) {
   });
 }
 
-export default add_Domanda;
+export async function get_Data(esame, argomento) {
+  var docRef = doc(db, "esami", esame, "argomenti", argomento);
+  var docSnap = await getDoc(docRef);
+
+  return docSnap.data()["domande"];
+}
