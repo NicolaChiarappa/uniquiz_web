@@ -2,17 +2,21 @@ import HStack from "@/app/Layout/HStack";
 import VStack from "@/app/Layout/VStack";
 
 import { Container } from "postcss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { get_Data } from "@/app/api/firestore";
 
 const Viewer = () => {
   const [isLoaded, setisLoaded] = useState(false);
   const [domande, setDomande] = useState([]);
-  get_Data("diritto_privato", "contratti").then((res) => {
-    setDomande(res);
+  useEffect(
+    () =>
+      get_Data("diritto privato", "contratti").then((res) => {
+        setDomande(res);
 
-    setisLoaded(true);
-  });
+        setisLoaded(true);
+      }),
+    []
+  );
 
   return (
     <VStack style='w-full bg-purple-700 h-screen'>

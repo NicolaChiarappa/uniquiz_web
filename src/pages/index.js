@@ -5,9 +5,10 @@ import HStack from "../../app/Layout/HStack";
 import { add_Domanda } from "../../app/api/firestore";
 import Button from "../../app/Bricks/Button";
 import React, { useState } from "react";
+import Router from "next/router";
 
 const Home = () => {
-  const [esame, setEsame] = useState("diritto_privato");
+  const [esame, setEsame] = useState("diritto privato");
   const [argomento, setArgomento] = useState("contratti");
   const [testoD, setTestod] = useState("");
   const [primaR, setPrimar] = useState("");
@@ -39,7 +40,7 @@ const Home = () => {
       ],
     };
 
-    add_Domanda(esame, argomento, obj);
+    add_Domanda(esame, argomento, obj).finally(() => Router.reload());
   };
   return (
     <>
